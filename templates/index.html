@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио Мастера</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+            color: #262626;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .aspect-square {
+            aspect-ratio: 1 / 1;
+        }
+        .story-ring {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            padding: 2px;
+        }
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        body.modal-active {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col items-center">
+
+    <!-- Top Navigation (Desktop/Mobile) -->
+    <nav class="w-full bg-white border-b border-gray-200 fixed top-0 z-40">
+        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="text-xl font-bold tracking-tight hidden md:block">PortfolioInsta</div>
+            <div class="text-xl font-bold tracking-tight md:hidden">portfolio_master</div>
+            
+            <div class="flex-1 max-w-xs mx-4 hidden md:block">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="text" class="w-full bg-gray-100 rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300" placeholder="Поиск">
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-6 text-xl">
+                <a href="#" class="hover:text-gray-500"><i class="fas fa-home"></i></a>
+                <a href="#" class="hover:text-gray-500"><i class="far fa-paper-plane"></i></a>
+                <a href="#" class="hover:text-gray-500"><i class="far fa-compass"></i></a>
+                <a href="#" class="hover:text-gray-500"><i class="far fa-heart"></i></a>
+                <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1bcd18d95-ea11-436f-b190-44ff47e7ffe3.png" alt="Profile" class="w-6 h-6 rounded-full border border-gray-300">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="w-full max-w-4xl mt-20 md:mt-24 mb-12 px-4 md:px-0">
+        
+        <!-- Profile Header -->
+        <header class="flex flex-col md:flex-row items-center md:items-start mb-10 md:mb-12">
+            <!-- Profile Picture -->
+            <div class="flex-shrink-0 mx-auto md:mx-0 md:mr-16 mb-6 md:mb-0">
+                <div class="story-ring rounded-full p-[2px] w-24 h-24 md:w-36 md:h-36 cursor-pointer">
+                    <div class="bg-white rounded-full p-[2px]">
+                        <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1bcd18d95-ea11-436f-b190-44ff47e7ffe3.png" alt="Profile" class="w-full h-full rounded-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Info -->
+            <div class="flex-grow w-full md:w-auto">
+                <div class="flex flex-col md:flex-row items-center md:items-start mb-5">
+                    <h2 class="text-xl md:text-2xl font-light mr-0 md:mr-5 mb-3 md:mb-0 text-center md:text-left">alex_design_pro</h2>
+                    <div class="flex space-x-2">
+                        <button class="bg-gray-100 hover:bg-gray-200 text-black px-6 py-1.5 rounded-lg text-sm font-semibold transition">
+                            <i class="fas fa-cog mr-1"></i> Редактировать
+                        </button>
+                        <button class="bg-gray-100 hover:bg-gray-200 text-black px-6 py-1.5 rounded-lg text-sm font-semibold transition">
+                            <i class="fas fa-chart-bar mr-1"></i> Статистика
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats (Desktop) -->
+                <ul class="hidden md:flex space-x-10 mb-5 text-base">
+                    <li><span class="font-bold">142</span> публикаций</li>
+                    <li><span class="font-bold">12.5k</span> подписчиков</li>
+                    <li><span class="font-bold">450</span> подписок</li>
+                </ul>
+
+                <!-- Bio -->
+                <div class="text-sm md:text-base px-1 md:px-0">
+                    <h1 class="font-bold">Александр Петров | Архитектор</h1>
+                    <p class="whitespace-pre-line">🏗️ Проектирование жилых и коммерческих пространств<br>
+                    📐 Чертежи • 3D Визуализация • Авторский надзор<br>
+                    📍 Москва и МО<br>
+                    👇 Связаться со мной для консультации</p>
+                    
+                    <!-- Contact Buttons -->
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <a href="#" class="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition w-full md:w-auto">
+                            <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                        </a>
+                        <a href="#" class="flex items-center justify-center bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition w-full md:w-auto">
+                            <i class="fab fa-telegram mr-2"></i> Telegram
+                        </a>
+                        <a href="mailto:email@example.com" class="flex items-center justify-center bg-gray-200 hover:bg-gray-300 text-black px-4 py-2 rounded-lg text-sm font-medium transition w-full md:w-auto">
+                            <i class="far fa-envelope mr-2"></i> Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats (Mobile) -->
+        <ul class="flex md:hidden justify-around border-t border-gray-200 py-4 mb-6 text-sm">
+            <li class="text-center"><div class="font-bold">142</div><div class="text-gray-500">Публикации</div></li>
+            <li class="text-center"><div class="font-bold">12.5k</div><div class="text-gray-500">Подписчики</div></li>
+            <li class="text-center"><div class="font-bold">450</div><div class="text-gray-500">Подписки</div></li>
+        </ul>
+
+        <!-- Highlights / Stories -->
+        <div class="flex space-x-4 md:space-x-8 overflow-x-auto hide-scrollbar mb-8 pb-2">
+            <!-- Story Item 1 -->
+            <div class="flex flex-col items-center space-y-1 flex-shrink-0 cursor-pointer">
+                <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-gray-200 p-1 bg-white">
+                    <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1ee2f42ae-6769-45a3-ba0a-0eb0c52a8cea.png" class="w-full h-full rounded-full object-cover">
+                </div>
+                <span class="text-xs font-medium">Интерьеры</span>
+            </div>
+            <!-- Story Item 2 -->
+            <div class="flex flex-col items-center space-y-1 flex-shrink-0 cursor-pointer">
+                <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-gray-200 p-1 bg-white">
+                    <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/19d421642-f7f5-4089-85f5-3e27e4da0c94.png" class="w-full h-full rounded-full object-cover">
+                </div>
+                <span class="text-xs font-medium">Чертежи</span>
+            </div>
+            <!-- Story Item 3 -->
+            <div class="flex flex-col items-center space-y-1 flex-shrink-0 cursor-pointer">
+                <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-gray-200 p-1 bg-white">
+                    <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1adaef0f4-a4d9-4e42-82fc-8dac62ff95dc.png" class="w-full h-full rounded-full object-cover">
+                </div>
+                <span class="text-xs font-medium">Брендинг</span>
+            </div>
+             <!-- Story Item 4 -->
+             <div class="flex flex-col items-center space-y-1 flex-shrink-0 cursor-pointer">
+                <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-gray-200 p-1 bg-white">
+                    <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/130020fe9-a83c-48b5-ae86-4080b3e60ed7.png" class="w-full h-full rounded-full object-cover">
+                </div>
+                <span class="text-xs font-medium">UI/UX</span>
+            </div>
+             <!-- Story Item 5 -->
+             <div class="flex flex-col items-center space-y-1 flex-shrink-0 cursor-pointer">
+                <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-gray-200 p-1 bg-white">
+                    <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1dc4919b0-83cb-473b-b076-615a3c687d5c.png" class="w-full h-full rounded-full object-cover">
+                </div>
+                <span class="text-xs font-medium">Фото</span>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="border-t border-gray-200 flex justify-center space-x-12 text-xs font-semibold tracking-widest uppercase">
+            <button class="flex items-center space-x-1 py-4 border-t border-black -mt-px text-black">
+                <i class="fas fa-th"></i>
+                <span class="hidden md:inline">Публикации</span>
+            </button>
+            <button class="flex items-center space-x-1 py-4 border-t border-transparent text-gray-400 hover:text-gray-600">
+                <i class="far fa-user"></i>
+                <span class="hidden md:inline">Отметки</span>
+            </button>
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-3 gap-1 md:gap-7">
+            <!-- Item 1 -->
+            <div class="relative group aspect-square bg-gray-100 cursor-pointer overflow-hidden" onclick="openModal('https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1ee2f42ae-6769-45a3-ba0a-0eb0c52a8cea.png', 'Проект гостиной в стиле минимализм')">
+                <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1ee2f42ae-6769-45a3-ba0a-0eb0c52a8cea.png" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white font-bold flex space-x-4">
+                        <span><i class="far fa-heart mr-1"></i> 245</span>
+                        <span><i class="far fa-comment mr-1"></i> 12</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="relative group aspect-square bg-gray-100 cursor-pointer overflow-hidden" onclick="openModal('https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/19d421642-f7f5-4089-85f5-3e27e4da0c94.png', 'Рабочий эскиз планировки квартиры')">
+                <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/19d421642-f7f5-4089-85f5-3e27e4da0c94.png" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white font-bold flex space-x-4">
+                        <span><i class="far fa-heart mr-1"></i> 189</span>
+                        <span><i class="far fa-comment mr-1"></i> 8</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="relative group aspect-square bg-gray-100 cursor-pointer overflow-hidden" onclick="openModal('https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1adaef0f4-a4d9-4e42-82fc-8dac62ff95dc.png', 'Разработка фирменного стиля Nexus Tech')">
+                <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1adaef0f4-a4d9-4e42-82fc-8dac62ff95dc.png" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white font-bold flex space-x-4">
+                        <span><i class="far fa-heart mr-1"></i> 312</span>
+                        <span><i class="far fa-comment mr-1"></i> 24</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="relative group aspect-square bg-gray-100 cursor-pointer overflow-hidden" onclick="openModal('https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/130020fe9-a83c-48b5-ae86-4080b3e60ed7.png', 'Дизайн мобильного приложения')">
+                <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/130020fe9-a83c-48b5-ae86-4080b3e60ed7.png" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white font-bold flex space-x-4">
+                        <span><i class="far fa-heart mr-1"></i> 156</span>
+                        <span><i class="far fa-comment mr-1"></i> 5</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="relative group aspect-square bg-gray-100 cursor-pointer overflow-hidden" onclick="openModal('https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1dc4919b0-83cb-473b-b076-615a3c687d5c.png', 'Студийный портрет')">
+                <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1dc4919b0-83cb-473b-b076-615a3c687d5c.png" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white font-bold flex space-x-4">
+                        <span><i class="far fa-heart mr-1"></i> 420</span>
+                        <span><i class="far fa-comment mr-1"></i> 32</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="relative group aspect-square bg-gray-100 cursor-pointer overflow-hidden" onclick="openModal('https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/13fc54613-9464-4019-88f6-61a20d8840c3.png', 'Дизайн деревянного кресла')">
+                <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/13fc54613-9464-4019-88f6-61a20d8840c3.png" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white font-bold flex space-x-4">
+                        <span><i class="far fa-heart mr-1"></i> 278</span>
+                        <span><i class="far fa-comment mr-1"></i> 15</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="relative group aspect-square bg-gray-100 cursor-pointer overflow-hidden" onclick="openModal('https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/121b80afb-5eff-497d-9115-840d25ea9002.png', 'Ландшафтный дизайн парка')">
+                <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/121b80afb-5eff-497d-9115-840d25ea9002.png" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white font-bold flex space-x-4">
+                        <span><i class="far fa-heart mr-1"></i> 350</span>
+                        <span><i class="far fa-comment mr-1"></i> 20</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="relative group aspect-square bg-gray-100 cursor-pointer overflow-hidden" onclick="openModal('https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1f727b125-a9e7-4f0b-acf1-a37be6943eb0.png', 'Фасад офисного здания')">
+                <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1f727b125-a9e7-4f0b-acf1-a37be6943eb0.png" class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div class="text-white font-bold flex space-x-4">
+                        <span><i class="far fa-heart mr-1"></i> 510</span>
+                        <span><i class="far fa-comment mr-1"></i> 45</span>
+                    </div>
+                </div>
+            </div>
+             <!-- Item 9 (Placeholder for grid balance) -->
+             <div class="relative group aspect-square bg-gray-100 cursor-pointer overflow-hidden flex items-center justify-center bg-gray-50">
+                <div class="text-gray-300 text-4xl">
+                    <i class="fas fa-plus"></i>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-8 text-center text-xs text-gray-400 mt-auto">
+        <div class="flex justify-center space-x-4 mb-4">
+            <a href="#" class="hover:underline">О нас</a>
+            <a href="#" class="hover:underline">Помощь</a>
+            <a href="#" class="hover:underline">Пресса</a>
+            <a href="#" class="hover:underline">API</a>
+            <a href="#" class="hover:underline">Вакансии</a>
+            <a href="#" class="hover:underline">Конфиденциальность</a>
+        </div>
+        <p>&copy; 2024 INSTAGRAM CLONE TEMPLATE BY MASTER</p>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+        <div class="modal-overlay absolute w-full h-full bg-black opacity-75" onclick="closeModal()"></div>
+        
+        <div class="modal-container bg-white w-11/12 md:max-w-3xl mx-auto rounded shadow-lg z-50 overflow-y-auto max-h-[90vh] flex flex-col md:flex-row">
+            
+            <!-- Close Button -->
+            <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50" onclick="closeModal()">
+                <i class="fas fa-times text-2xl"></i>
+            </div>
+
+            <!-- Image Section -->
+            <div class="flex-center w-full md:w-2/3 bg-black flex items-center justify-center">
+                <img id="modalImage" class="max-h-[80vh] max-w-full object-contain" src="" alt="Full view">
+            </div>
+
+            <!-- Details Section -->
+            <div class="w-full md:w-1/3 p-6 flex flex-col">
+                <!-- Header -->
+                <div class="flex items-center mb-4 pb-4 border-b border-gray-100">
+                    <img src="https://image.qwenlm.ai/public_source/0d8b5696-aa3f-4fb7-ab12-0f167997060c/1bcd18d95-ea11-436f-b190-44ff47e7ffe3.png" class="w-8 h-8 rounded-full mr-3 object-cover">
+                    <span class="font-bold text-sm">alex_design_pro</span>
+                </div>
+
+                <!-- Caption -->
+                <div class="flex-grow mb-4">
+                    <p id="modalCaption" class="text-sm leading-relaxed"></p>
+                </div>
+
+                <!-- Actions -->
+                <div class="mb-4">
+                    <div class="flex justify-between text-2xl mb-2">
+                        <div class="flex space-x-4">
+                            <i class="far fa-heart cursor-pointer hover:text-gray-500"></i>
+                            <i class="far fa-comment cursor-pointer hover:text-gray-500"></i>
+                            <i class="far fa-paper-plane cursor-pointer hover:text-gray-500"></i>
+                        </div>
+                        <i class="far fa-bookmark cursor-pointer hover:text-gray-500"></i>
+                    </div>
+                    <div class="font-bold text-sm mb-1">Просмотры: 1 240</div>
+                    <div class="text-xs text-gray-400 uppercase">2 часа назад</div>
+                </div>
+
+                <!-- Add Comment -->
+                <div class="border-t border-gray-100 pt-4">
+                    <div class="flex items-center">
+                        <i class="far fa-smile text-2xl mr-3 text-gray-400"></i>
+                        <input type="text" placeholder="Добавьте комментарий..." class="w-full text-sm focus:outline-none">
+                        <button class="text-blue-500 text-sm font-semibold opacity-50">Опубликовать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const body = document.querySelector('body');
+
+        function openModal(src, caption) {
+            modalImg.src = src;
+            modalCaption.innerText = caption;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            body.classList.add('modal-active');
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            body.classList.remove('modal-active');
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
