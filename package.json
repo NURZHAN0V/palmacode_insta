@@ -12,7 +12,9 @@
     "clean": "nuxt cleanup",
     "test": "nuxt test",
     "upgrade": "nuxt upgrade",
-    "info": "nuxt info"
+    "info": "nuxt info",
+    "generate:gh-pages": "node scripts/generate-static.mjs",
+    "deploy:gh-pages": "yarn generate:gh-pages && echo 'Запустите GitHub Actions для деплоя'"
   },
   "dependencies": {
     "@nuxt/icon": "2.2.1",

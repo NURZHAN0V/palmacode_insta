@@ -13,5 +13,16 @@ export default defineNuxtConfig({
   tailwindcss: {
     exposeConfig: true,
     viewer: true,
+  },
+  // Конфигурация для статической генерации (GitHub Pages)
+  app: {
+    baseURL: process.env.NODE_ENV === 'production' ? '/palmacode_insta/' : '/',
+    buildAssetsDir: '/_nuxt/',
+  },
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/']
+    }
   }
 })
